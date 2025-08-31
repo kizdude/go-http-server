@@ -10,7 +10,7 @@ Supports routing, GET/POST requests, and basic HTTP/1.1 functionality.
 - Response building (`BuildResponse`)
 - Route handling via `Server.Handle(path, handler)`
 - 400 Bad Request and 404 Not Found handling
-- Supports multiple requests per TCP connection using goroutines
+- Supports multiple concurrent TCP connections
 
 ## Project Structure
 
