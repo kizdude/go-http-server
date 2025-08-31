@@ -1,5 +1,5 @@
 package httpserver
-// Response
+
 import (
 	"fmt"
 	"strings"

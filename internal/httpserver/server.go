@@ -8,7 +8,6 @@ import (
 	"strconv"
 )
 
-
 // Server Struct to hold server state.
 type Server struct {
     Addr   	string

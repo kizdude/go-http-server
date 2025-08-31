@@ -5,6 +5,7 @@ import (
 	"strings"
 	"slices"
 )
+
 // Request Struct for parsed HTTP request.
 type Request struct {
 	Method string
@@ -19,8 +20,7 @@ var methods = []string{
 	"POST",
 }
 
-// ParseRequest takes int the data read over the stream and creates a request
-// struct
+// ParseRequest takes int the data read over the stream and creates request struct
 func ParseRequest(data []byte) (*Request, error) {
 	req := &Request{}
 
