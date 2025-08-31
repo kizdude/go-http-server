@@ -54,7 +54,7 @@ func ParseRequest(data []byte) (*Request, error) {
 	if len(headerParts) == 2 {
 		headersParts := strings.Split(headerParts[1], "\r\n")
 		// Populate headers map
-		for i := 0; i < len(headersParts); i++ {
+		for i := range len(headersParts) {
 			kv := strings.SplitN(headersParts[i], ":", 2)
 
 			if len(kv) != 2 {
@@ -71,4 +71,18 @@ func ParseRequest(data []byte) (*Request, error) {
 	req.Body = []byte(parts[1])
 
 	return req, nil
+}
+
+func (req *Request) ToString() string {
+	var builder strings.Builder
+
+	builder.WriteString(fmt.Sprintf("Method: %s, Path: %s, Version: %s\n", req.Method, req.Path, req.Version))
+	builder.WriteString("Headers:\n")
+	for key, value := range req.Headers {
+		builder.WriteString(fmt.Sprintf("%s: %s\n", key, value))
+	}
+	builder.WriteString("Body: ")
+	builder.Write(req.Body)
+
+	return builder.String()
 }

@@ -12,7 +12,7 @@ func main() {
 	server.Handle("/", rootHandler)
 	server.Handle("/echo", echoHandler)
 
-	log.Println("Server starting on :8080")
+	log.Println("Server starting on port :8080")
 	if err := server.ListenAndServe(); err != nil {
 		log.Fatal(err)
 	}

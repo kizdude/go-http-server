@@ -41,7 +41,7 @@ func (s *Server) ListenAndServe() error {
 	s.ln = ln
     defer ln.Close()
 
-	log.Printf("Server listening on port: %s", s.Addr)
+	log.Printf("Server listening on port %s", s.Addr)
 
 	// Accept incoming connections
 	for {
@@ -83,7 +83,7 @@ func (s *Server) handleConnection(conn net.Conn) {
 
 		// error parsing request
 		if err != nil {
-			log.Println("400 Bad Request:", err, req)
+			log.Println("400 Bad Request:", err, req.ToString())
 			sendBadRequest(conn)
 			return
 		}
@@ -101,7 +101,7 @@ func (s *Server) handleConnection(conn net.Conn) {
 			resp = handler(req)
 		} else {
 			// path not found
-			log.Println("404 Invalid path in request:", req.Path, req)
+			log.Println("Error 404: Invalid path in request:\n", req.ToString())
 			body := []byte("Not Found")
 			resp = &Response{
 				StatusCode: 404,
