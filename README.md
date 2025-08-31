@@ -19,9 +19,13 @@ myhttpserver/
 ├── go.mod
 ├── cmd/
 │   └── server/
-│       └── main.go          # Entry point
+│       ├── main.go         # Entry point
+│       └── handlers/       # Handlers
+│           ├── root.go
+│           ├── echo.go
+│           └── html.go
 └── internal/
-    └── httpserver/          # Server implementation
+    └── httpserver/         # Server implementation
         ├── request.go
         ├── response.go
         └── server.go
