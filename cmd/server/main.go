@@ -2,15 +2,15 @@ package main
 
 import (
 	"log"
-	"strconv"
 	"github.com/kizdude/go-http-server/internal/httpserver"
+	"github.com/kizdude/go-http-server/cmd/server/handlers"
 )
 
 func main() {
 	server := httpserver.NewServer(":8080")
 
-	server.Handle("/", rootHandler)
-	server.Handle("/echo", echoHandler)
+	server.Handle("/", handlers.RootHandler)
+	server.Handle("/echo", handlers.EchoHandler)
 
 	log.Println("Server starting on port :8080")
 	if err := server.ListenAndServe(); err != nil {
@@ -18,27 +18,3 @@ func main() {
 	}
 }
 
-// Handlers
-func rootHandler(req *httpserver.Request) *httpserver.Response {
-	body := []byte("Hello, world!")
-	return &httpserver.Response{
-		StatusCode: 200,
-		Headers: map[string]string{
-			"Content-Type": "text/plain",
-			"Content-Length": strconv.Itoa(len(body)),
-		},
-		Body: body,
-	}
-}
-
-func echoHandler(req *httpserver.Request) *httpserver.Response {
-	body := []byte(req.Body)
-	return &httpserver.Response{
-		StatusCode: 200,
-		Headers: map[string]string{
-			"Content-Type": "text/plain",
-			"Content-Length": strconv.Itoa(len(body)),
-		},
-		Body: body,
-	}
-}
