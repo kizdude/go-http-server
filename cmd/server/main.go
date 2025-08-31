@@ -11,6 +11,7 @@ func main() {
 
 	server.Handle("/", handlers.RootHandler)
 	server.Handle("/echo", handlers.EchoHandler)
+	server.Handle("/index.html", handlers.HtmlHandler)
 
 	log.Println("Server starting on port :8080")
 	if err := server.ListenAndServe(); err != nil {
